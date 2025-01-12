@@ -1,10 +1,14 @@
 "use client";
 
+import NumberFlow from "@number-flow/react";
 import { useState, useCallback, useEffect } from "react";
 
 import { cn } from "@/lib/utils";
 
 import { useEloStore } from "@/app/stores/elo";
+import { useMatchStore } from "@/app/stores/match";
+
+import { calculateElo, generateOpponentRating } from "@/app/utils/elo";
 import {
   rollDice,
   checkCeeloRoll,
@@ -23,22 +27,22 @@ const ANIMATION_DURATION = 3000;
 const ANIMATION_ITERATIONS = 3;
 
 export const DiceRoll = () => {
-  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const { heroRating, villainRating, setHeroRating, setVillainRating } =
+    useEloStore();
 
+  const { isPlaying, setIsPlaying } = useMatchStore();
   const [roll, setRoll] = useState<number[]>([0, 0, 0]);
   const [rollCount, setRollCount] = useState<number>(0);
   const [score, setScore] = useState<string>("0");
   const [isRolling, setIsRolling] = useState<boolean>(false);
 
-  const startGame = () => {
-    setIsPlaying(true);
-  };
-
   const handleRoll = useCallback(() => {
-    if (!isPlaying) startGame();
-
     setRollCount((r) => r + 1);
     setIsRolling(true);
+
+    if (!isPlaying) {
+      setIsPlaying(true);
+    }
 
     const newRoll = rollDice(3);
 
@@ -52,18 +56,36 @@ export const DiceRoll = () => {
     const isGameOver = !!checkCeeloRoll(roll);
     const sortedRoll = sortRoll(roll);
 
+    const INSTANT_WIN = isWin(sortedRoll);
+    const INSTANT_LOSS = isLoss(sortedRoll);
+    const IS_TRIPLE = allSame(sortedRoll);
+    const IS_DOUBLE = hasDuplicates(sortedRoll);
+
+    const MATCH_RESULT = INSTANT_WIN || IS_TRIPLE || IS_DOUBLE;
+
     if (isGameOver) {
-      setRollCount(0);
-      if (isWin(sortedRoll)) {
+      const newHeroRating = calculateElo(
+        heroRating,
+        villainRating,
+        MATCH_RESULT
+      );
+      const newVillainRating = generateOpponentRating(newHeroRating);
+
+      setHeroRating(newHeroRating);
+      setVillainRating(newVillainRating);
+
+      if (INSTANT_WIN) {
         setScore("WIN");
-      } else if (isLoss(sortedRoll)) {
+      } else if (INSTANT_LOSS) {
         setScore("LOSE");
-      } else if (allSame(sortedRoll)) {
+      } else if (IS_TRIPLE) {
         setScore(sortedRoll[0].toString());
-      } else if (hasDuplicates(sortedRoll)) {
+      } else if (IS_DOUBLE) {
         const score = findUniqueNumber(sortedRoll);
         setScore(score.toString());
       }
+      setRollCount(0);
+
       setIsPlaying(false);
     } else {
       setScore("0");
@@ -88,7 +110,7 @@ export const DiceRoll = () => {
         ))}
       </div>
       <button
-        className="mt-2 rounded-md bg-foreground text-background py-2 px-8 font-bold uppercase opacity-90 hover:opacity-100 transition-all tracking-wide disabled:opacity-50 disabled:cursor-not-allowed"
+        className="mt-2 rounded-md bg-foreground text-background py-2 px-8 font-bold uppercase tracking-wide"
         disabled={isRolling}
         onClick={handleRoll}
       >
@@ -99,7 +121,9 @@ export const DiceRoll = () => {
           score: {isRolling ? "Rolling..." : score}
         </span>
 
-        <span className="text-xs font-bold uppercase">rolls: {rollCount}</span>
+        <span className="text-xs font-bold uppercase">
+          rolls: <NumberFlow value={rollCount} />
+        </span>
       </div>
     </div>
   );
