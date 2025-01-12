@@ -26,11 +26,15 @@ body {
 
 @keyframes bounce {
   0% {
-    transform: 0;
+    transform: translateY(0) rotate(0deg);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+  25% {
+    transform: translateY(-12%) rotate(-4deg) translateX(-4%);
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
   50% {
-    transform: translateY(-25%);
+    transform: translateY(-25%) rotate(4deg);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
 }

@@ -2,6 +2,9 @@
 
 import { useState, useCallback, useEffect } from "react";
 
+import { cn } from "@/lib/utils";
+
+import { useEloStore } from "@/app/stores/elo";
 import {
   rollDice,
   checkCeeloRoll,
@@ -12,7 +15,6 @@ import {
   allSame,
   findUniqueNumber,
 } from "@/app/utils/dice";
-import { cn } from "@/lib/utils";
 
 import { Die } from "./Die";
 
@@ -25,12 +27,15 @@ export const DiceRoll = () => {
 
   const [roll, setRoll] = useState<number[]>([0, 0, 0]);
   const [rollCount, setRollCount] = useState<number>(0);
-  const [score, setScore] = useState<string>("None");
-
+  const [score, setScore] = useState<string>("0");
   const [isRolling, setIsRolling] = useState<boolean>(false);
 
+  const startGame = () => {
+    setIsPlaying(true);
+  };
+
   const handleRoll = useCallback(() => {
-    if (!isPlaying) setIsPlaying(true);
+    if (!isPlaying) startGame();
 
     setRollCount((r) => r + 1);
     setIsRolling(true);
@@ -48,21 +53,21 @@ export const DiceRoll = () => {
     const sortedRoll = sortRoll(roll);
 
     if (isGameOver) {
+      setRollCount(0);
       if (isWin(sortedRoll)) {
         setScore("WIN");
       } else if (isLoss(sortedRoll)) {
-        setScore("LOSS");
+        setScore("LOSE");
       } else if (allSame(sortedRoll)) {
         setScore(sortedRoll[0].toString());
       } else if (hasDuplicates(sortedRoll)) {
         const score = findUniqueNumber(sortedRoll);
         setScore(score.toString());
       }
-      setRollCount(0);
+      setIsPlaying(false);
     } else {
-      setScore("None");
+      setScore("0");
     }
-    console.log(roll, isGameOver);
   }, [roll]);
 
   return (
@@ -72,10 +77,7 @@ export const DiceRoll = () => {
           <div
             key={`${rollCount}_${i}`}
             data-animate={rollCount > 0}
-            className={cn("opacity-0 transition-all delay-[3000]", {
-              "animate-bounce": rollCount > 0,
-              "opacity-100": isPlaying,
-            })}
+            className={cn({ "animate-bounce": rollCount > 0 })}
             style={{
               animationDelay: `${ANIMATION_DELAY * i}ms`,
               animationIterationCount: ANIMATION_ITERATIONS,
@@ -93,18 +95,11 @@ export const DiceRoll = () => {
         roll dice
       </button>
       <div className="flex justify-between">
-        <span
-          className={cn(
-            "text-xs font-bold text-right uppercase opacity-0 transition-all",
-            { "opacity-100": isPlaying }
-          )}
-        >
-          score: {score}
+        <span className="text-xs font-bold uppercase">
+          score: {isRolling ? "Rolling..." : score}
         </span>
 
-        <span className="text-xs font-bold text-right uppercase">
-          rolls: {rollCount}
-        </span>
+        <span className="text-xs font-bold uppercase">rolls: {rollCount}</span>
       </div>
     </div>
   );
