@@ -58,6 +58,7 @@ export const DiceRoll = () => {
         const score = findUniqueNumber(sortedRoll);
         setScore(score.toString());
       }
+      setRollCount(0);
     } else {
       setScore("None");
     }
