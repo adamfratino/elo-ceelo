@@ -33,7 +33,7 @@ export const DiceRoll = () => {
   const { isPlaying, setIsPlaying } = useMatchStore();
   const [roll, setRoll] = useState<number[]>([0, 0, 0]);
   const [rollCount, setRollCount] = useState<number>(0);
-  const [score, setScore] = useState<string>("0");
+  const [score, setScore] = useState<string>();
   const [isRolling, setIsRolling] = useState<boolean>(false);
 
   const handleRoll = useCallback(() => {
@@ -44,11 +44,9 @@ export const DiceRoll = () => {
       setIsPlaying(true);
     }
 
-    const newRoll = rollDice(3);
-
     setTimeout(() => {
       setIsRolling(false);
-      setRoll(newRoll);
+      setRoll(rollDice(3));
     }, ANIMATION_DURATION + ANIMATION_DELAY * 2);
   }, [roll]);
 
@@ -79,7 +77,8 @@ export const DiceRoll = () => {
       } else if (INSTANT_LOSS) {
         setScore("LOSE");
       } else if (IS_TRIPLE) {
-        setScore(sortedRoll[0].toString());
+        const score = sortedRoll[0].toString().repeat(3);
+        setScore(score);
       } else if (IS_DOUBLE) {
         const score = findUniqueNumber(sortedRoll);
         setScore(score.toString());
@@ -105,7 +104,16 @@ export const DiceRoll = () => {
               animationIterationCount: ANIMATION_ITERATIONS,
             }}
           >
-            <Die num={die} />
+            <Die
+              num={die}
+              className={cn("transition-all", {
+                "stroke-[mediumseagreen]": score === "WIN",
+                "stroke-[tomato]": score === "LOSE",
+                "stroke-[gold]": score !== "0",
+                "stroke-cyan-500": score && Array.from(score).length === 3,
+                "stroke-white": score === "000",
+              })}
+            />
           </div>
         ))}
       </div>
@@ -117,8 +125,19 @@ export const DiceRoll = () => {
         roll dice
       </button>
       <div className="flex justify-between">
-        <span className="text-xs font-bold uppercase">
-          score: {isRolling ? "Rolling..." : score}
+        <span
+          data-loss={score === "LOSE"}
+          data-win={score === "WIN"}
+          className="text-xs font-bold uppercase [&>span]:data-[loss=true]:text-[tomato] [&>span]:data-[win=true]:text-[mediumseagreen]"
+        >
+          score:{" "}
+          {isRolling ? (
+            "Rolling..."
+          ) : score === "000" ? (
+            "0"
+          ) : (
+            <span>{score}</span>
+          )}
         </span>
 
         <span className="text-xs font-bold uppercase">
