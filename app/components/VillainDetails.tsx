@@ -2,7 +2,7 @@
 
 import NumberFlow from "@number-flow/react";
 
-import { useMatchStore } from "@/app/stores/match";
+import { useMatchStore } from "@/lib/stores/match";
 
 export const VillainDetails = () => {
   const { villainRollCount, villainScore } = useMatchStore();

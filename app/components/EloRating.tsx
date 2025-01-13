@@ -4,9 +4,9 @@ import NumberFlow from "@number-flow/react";
 import { Shuffle } from "lucide-react";
 import { useEffect } from "react";
 
-import { useEloStore } from "@/app/stores/elo";
-import { useMatchStore } from "../stores/match";
-import { generateOpponentRating } from "@/app/utils/elo";
+import { useEloStore } from "@/lib/stores/elo";
+import { useMatchStore } from "@/lib/stores/match";
+import { generateOpponentRating } from "@/lib/utils/elo";
 
 export const EloRating = () => {
   const isPlaying = useMatchStore((s) => s.isPlaying);

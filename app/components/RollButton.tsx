@@ -2,9 +2,9 @@
 
 import { useRef, useEffect } from "react";
 
-import { useMatchStore } from "@/app/stores/match";
+import { useMatchStore } from "@/lib/stores/match";
 import { ANIMATION_DELAY, ANIMATION_DURATION } from "@/lib/constants";
-import { rollDice, generateVillainTurn } from "@/app/utils/dice";
+import { rollDice, generateVillainTurn } from "@/lib/utils/dice";
 
 export const RollButton = () => {
   const {

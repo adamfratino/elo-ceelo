@@ -1,7 +1,7 @@
 "use client";
 
 import NumberFlow from "@number-flow/react";
-import { useMatchStore } from "@/app/stores/match";
+import { useMatchStore } from "@/lib/stores/match";
 import { ANIMATION_DELAY } from "@/lib/constants";
 
 export const HeroDetails = () => {

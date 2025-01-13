@@ -7,13 +7,13 @@ import {
   ANIMATION_DELAY,
   ANIMATION_ITERATIONS,
 } from "@/lib/constants";
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils/cn";
 
-import { useMatchStore } from "@/app/stores/match";
-import { useEloStore } from "@/app/stores/elo";
+import { useMatchStore } from "@/lib/stores/match";
+import { useEloStore } from "@/lib/stores/elo";
 
-import { evaluateRoll } from "@/app/utils/dice";
-import { calculateElo } from "@/app/utils/elo";
+import { evaluateRoll } from "@/lib/utils/dice";
+import { calculateElo } from "@/lib/utils/elo";
 
 import { Die } from "./Die";
 
