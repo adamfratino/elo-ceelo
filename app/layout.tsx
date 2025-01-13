@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Elo Cee-lo",
-  description: "Become the best at RNG.",
+  title: "elo cee-lo",
+  description: "become the best at rng",
 };
 
 export default function RootLayout({
@@ -11,7 +11,7 @@ export default function RootLayout({
 }: Readonly<React.PropsWithChildren>) {
   return (
     <html lang="en">
-      <body className="antialiased min-h-[100dvh] flex flex-col">
+      <body className="antialiased min-h-[100dvh] flex flex-col font-bold uppercase">
         {children}
       </body>
     </html>

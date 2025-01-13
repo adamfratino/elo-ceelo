@@ -39,6 +39,15 @@ body {
   }
 }
 
+@keyframes loading {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
 button {
   transition: all 150ms ease-in-out;
 
@@ -53,4 +62,14 @@ button {
     opacity: 0.2;
     cursor: not-allowed;
   }
+}
+
+.animated-focus {
+  outline: 2px solid transparent;
+  transition: all 100ms ease;
+}
+
+.animated-focus:focus {
+  outline-color: #aaa;
+  outline-offset: 2px;
 }
