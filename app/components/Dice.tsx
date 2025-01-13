@@ -58,7 +58,7 @@ export const Dice = () => {
       if (newRoll.isQualifying) {
         setIsPlaying(false);
 
-        if (heroScore !== villainScore) {
+        if (heroScore != villainScore) {
           const heroWins = heroScore! > villainScore!;
           setHeroRating(calculateElo(heroRating, villainRating, heroWins));
           setVillainRating(calculateElo(villainRating, heroRating, !heroWins));

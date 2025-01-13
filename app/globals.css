@@ -53,6 +53,7 @@ button {
 
   &:not(:disabled) {
     opacity: 0.9;
+
     &:hover {
       opacity: 1;
     }
