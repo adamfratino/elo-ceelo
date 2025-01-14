@@ -48,6 +48,15 @@ body {
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 button {
   transition: all 150ms ease-in-out;
 

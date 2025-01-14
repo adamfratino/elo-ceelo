@@ -43,7 +43,7 @@ export const HeroDetails = () => {
             </span>
           </span>
         ) : (
-          heroScore
+          heroScore !== 0 && <span>{heroScore}</span>
         )}
       </span>
       <span>

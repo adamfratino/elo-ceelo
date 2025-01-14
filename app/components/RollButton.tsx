@@ -17,6 +17,9 @@ export const RollButton = () => {
     setHeroRollCount,
     setVillainScore,
     setVillainRollCount,
+    setVillainRoll,
+    setResult,
+    setHeroScore,
   } = useMatchStore();
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -31,6 +34,7 @@ export const RollButton = () => {
     const newVillainRoll = generateVillainTurn();
     setVillainScore(newVillainRoll.roll.value);
     setVillainRollCount(newVillainRoll.attempts);
+    setVillainRoll(newVillainRoll.roll.dice);
   }
 
   function handleRoll() {
@@ -38,10 +42,12 @@ export const RollButton = () => {
 
     setIsRolling(true);
 
+    // start game
     if (!isPlaying) {
       setIsPlaying(true);
       rollForVillain();
       setHeroRollCount(1);
+      setResult(undefined);
     } else {
       setHeroRollCount(heroRollCount + 1);
     }

@@ -3,6 +3,7 @@ import { EloRating } from "./components/EloRating";
 import { Dice } from "./components/Dice";
 import { HeroDetails } from "./components/HeroDetails";
 import { VillainDetails } from "./components/VillainDetails";
+import { Result } from "./components/Result";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           <HeroDetails />
           <VillainDetails />
         </div>
+        <Result />
       </div>
     </main>
   );

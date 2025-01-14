@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-interface MatchState {
+export interface MatchState {
   isPlaying: boolean;
   isRolling: boolean;
   heroRollCount: number;
@@ -9,6 +9,7 @@ interface MatchState {
   villainRoll?: number[];
   villainRollCount: number;
   villainScore?: number;
+  result?: "win" | "lose" | "draw";
   setIsPlaying: (is: boolean) => void;
   setIsRolling: (is: boolean) => void;
   setHeroRollCount: (count: number) => void;
@@ -17,6 +18,7 @@ interface MatchState {
   setVillainRoll: (roll: number[]) => void;
   setVillainRollCount: (count: number) => void;
   setVillainScore: (score: number) => void;
+  setResult: (result?: "win" | "lose" | "draw") => void;
 }
 
 export const useMatchStore = create<MatchState>((set) => ({
@@ -28,6 +30,7 @@ export const useMatchStore = create<MatchState>((set) => ({
   villainRoll: undefined,
   villainRollCount: 0,
   villainScore: undefined,
+  result: undefined,
   setIsPlaying: (is) => set({ isPlaying: is }),
   setIsRolling: (is) => set({ isRolling: is }),
   setHeroRollCount: (count) => set({ heroRollCount: count }),
@@ -36,4 +39,5 @@ export const useMatchStore = create<MatchState>((set) => ({
   setVillainRoll: (roll) => set({ villainRoll: roll }),
   setVillainRollCount: (count: number) => set({ villainRollCount: count }),
   setVillainScore: (score) => set({ villainScore: score }),
+  setResult: (result) => set({ result }),
 }));
