@@ -10,6 +10,9 @@ export const HeroDetails = () => {
   return (
     <div className="flex flex-col">
       <span>
+        your rolls: <NumberFlow value={heroRollCount} className="ml-1" />
+      </span>
+      <span>
         your score:{" "}
         {isRolling ? (
           <span>
@@ -45,9 +48,6 @@ export const HeroDetails = () => {
         ) : (
           heroScore !== 0 && <span>{heroScore}</span>
         )}
-      </span>
-      <span>
-        your rolls: <NumberFlow value={heroRollCount} />
       </span>
     </div>
   );

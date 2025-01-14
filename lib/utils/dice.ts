@@ -5,9 +5,7 @@ export type TurnResult = {
 
 export type Roll = {
   dice: number[];
-  isQualifying: boolean;
-  type?: "triple" | "double" | "normal" | "instant-win" | "instant-loss";
-  value: number;
+  score: number;
 };
 
 export function rollDice(numDice: number = 3): number[] {
@@ -25,9 +23,7 @@ export function evaluateRoll(dice: number[]): Roll {
   if (sortedDice[0] === sortedDice[1] && sortedDice[1] === sortedDice[2]) {
     return {
       dice,
-      isQualifying: true,
-      type: "triple",
-      value: sortedDice[0] * 111,
+      score: sortedDice[0] * 111,
     };
   }
 
@@ -35,9 +31,7 @@ export function evaluateRoll(dice: number[]): Roll {
   if (sortedDice[0] === 4 && sortedDice[1] === 5 && sortedDice[2] === 6) {
     return {
       dice,
-      isQualifying: true,
-      type: "instant-win",
-      value: 999,
+      score: 999,
     };
   }
 
@@ -45,9 +39,7 @@ export function evaluateRoll(dice: number[]): Roll {
   if (sortedDice[0] === 1 && sortedDice[1] === 2 && sortedDice[2] === 3) {
     return {
       dice,
-      isQualifying: true,
-      type: "instant-loss",
-      value: -999,
+      score: -999,
     };
   }
 
@@ -58,41 +50,37 @@ export function evaluateRoll(dice: number[]): Roll {
       const nonDouble = sortedDice.find((d) => d !== sortedDice[i])!;
       return {
         dice,
-        isQualifying: true,
-        type: "double",
-        value: nonDouble, // Now just using the remaining die value
+        score: nonDouble, // Now just using the remaining die value
       };
     }
   }
 
-  // No qualifying roll
   return {
-    dice,
-    isQualifying: false,
-    type: "normal",
-    value: 0,
+    dice: [0, 0, 0],
+    score: 0,
   };
 }
 
 export function generateVillainTurn(): TurnResult {
-  let currentRoll: Roll;
+  let roll: Roll;
   let attempts = 0;
 
   do {
     attempts++;
-    currentRoll = evaluateRoll(rollDice());
-  } while (!currentRoll.isQualifying);
+    roll = evaluateRoll(rollDice());
+  } while (roll.score === 0); // or some other condition
 
-  return {
-    roll: currentRoll,
-    attempts,
-  };
+  return { roll, attempts };
 }
 
 export function compareRolls(
-  playerRoll: Roll,
-  computerRoll: Roll
-): "player" | "computer" | "tie" {
-  if (playerRoll.value == computerRoll.value) return "tie";
-  return playerRoll.value > computerRoll.value ? "player" : "computer";
+  heroScore: number,
+  villainScore: number
+): "win" | "lose" | "draw" {
+  if (heroScore == villainScore) return "draw";
+  return heroScore > villainScore ? "win" : "lose";
+}
+
+export function checkInstantWin(score?: number) {
+  return score === 999 || score === -999;
 }

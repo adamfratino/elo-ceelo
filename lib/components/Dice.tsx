@@ -8,12 +8,14 @@ import {
   ANIMATION_ITERATIONS,
 } from "@/lib/constants";
 import { cn } from "@/lib/utils/cn";
-
 import { useMatchStore } from "@/lib/stores/match";
 
-import { evaluateRoll } from "@/lib/utils/dice";
-
 import { Die } from "./Die";
+import { evaluateRoll } from "../utils/dice";
+
+const A1 = ANIMATION_DURATION;
+const A2 = ANIMATION_DURATION + ANIMATION_DELAY;
+const A3 = ANIMATION_DURATION + ANIMATION_DELAY * 2;
 
 export const Dice = () => {
   const {
@@ -22,60 +24,29 @@ export const Dice = () => {
     isRolling,
     heroRoll = [0, 0, 0],
     heroRollCount,
-    heroScore,
-    villainScore,
+    setIsRolling,
     setHeroScore,
-    setIsPlaying,
-    setResult,
   } = useMatchStore();
 
   const [num1, setNum1] = useState<number | undefined>(0);
   const [num2, setNum2] = useState<number | undefined>(0);
   const [num3, setNum3] = useState<number | undefined>(0);
-
   const nums = [num1, num2, num3];
 
   useEffect(() => {
     if (!isPlaying) return;
-
-    // set first die
-    setTimeout(() => setNum1(heroRoll[0]), ANIMATION_DURATION);
-
-    // set second die
-    setTimeout(() => {
-      setNum2(heroRoll[1]);
-    }, ANIMATION_DURATION + ANIMATION_DELAY);
-
-    // set third die
+    setTimeout(() => setNum1(heroRoll[0]), A1);
+    setTimeout(() => setNum2(heroRoll[1]), A2);
     setTimeout(() => {
       setNum3(heroRoll[2]);
+      setIsRolling(false);
 
-      const newRoll = evaluateRoll(heroRoll);
-      setHeroScore(newRoll.value);
-
-      // if game is over
-      if (newRoll.isQualifying) {
-        setIsPlaying(false);
+      if (heroRoll) {
+        const score = evaluateRoll(heroRoll).score;
+        setHeroScore(score);
       }
-    }, ANIMATION_DURATION + ANIMATION_DELAY * 2);
+    }, A3);
   }, [heroRoll]);
-
-  useEffect(() => {
-    const gameOver = evaluateRoll(heroRoll).isQualifying;
-
-    if (gameOver && heroScore && villainScore) {
-      console.log("heroRoll", heroScore);
-      console.log("villainRoll", villainScore);
-
-      if (heroScore > villainScore) {
-        setResult("win");
-      } else if (heroScore < villainScore) {
-        setResult("lose");
-      } else {
-        setResult("draw");
-      }
-    }
-  }, [heroScore, villainScore]);
 
   return (
     <div className="flex gap-2">
@@ -93,8 +64,8 @@ export const Dice = () => {
             className={cn("transition-all opacity-100", {
               "opacity-20": !isPlaying && !result,
               "stroke-[mediumseagreen]": result === "win",
-              "stroke-[gold]": result === "draw",
               "stroke-[tomato]": result === "lose",
+              "stroke-[gold]": result === "draw",
             })}
           />
         </div>

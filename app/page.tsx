@@ -1,9 +1,9 @@
-import { RollButton } from "./components/RollButton";
-import { EloRating } from "./components/EloRating";
-import { Dice } from "./components/Dice";
-import { HeroDetails } from "./components/HeroDetails";
-import { VillainDetails } from "./components/VillainDetails";
-import { Result } from "./components/Result";
+import { RollButton } from "@/lib/components/RollButton";
+import { EloRating } from "@/lib/components/EloRating";
+import { Dice } from "@/lib/components/Dice";
+import { HeroDetails } from "@/lib/components/HeroDetails";
+import { VillainDetails } from "@/lib/components/VillainDetails";
+import { Result } from "@/lib/components/Result";
 
 export default function Home() {
   return (

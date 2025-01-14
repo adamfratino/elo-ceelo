@@ -3,23 +3,21 @@
 import { useRef, useEffect } from "react";
 
 import { useMatchStore } from "@/lib/stores/match";
-import { ANIMATION_DELAY, ANIMATION_DURATION } from "@/lib/constants";
 import { rollDice, generateVillainTurn } from "@/lib/utils/dice";
 
 export const RollButton = () => {
   const {
     isRolling,
-    setIsRolling,
     isPlaying,
+    heroRollCount,
+    setIsRolling,
     setIsPlaying,
     setHeroRoll,
-    heroRollCount,
     setHeroRollCount,
     setVillainScore,
     setVillainRollCount,
     setVillainRoll,
     setResult,
-    setHeroScore,
   } = useMatchStore();
 
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -30,43 +28,43 @@ export const RollButton = () => {
     }
   }
 
-  function rollForVillain() {
+  function startGame() {
+    setResult(undefined);
+    setHeroRollCount(1);
+    setIsPlaying(true);
+
     const newVillainRoll = generateVillainTurn();
-    setVillainScore(newVillainRoll.roll.value);
+
+    setVillainScore(newVillainRoll.roll.score);
     setVillainRollCount(newVillainRoll.attempts);
     setVillainRoll(newVillainRoll.roll.dice);
   }
 
   function handleRoll() {
-    if (isRolling) return null;
-
-    setIsRolling(true);
+    // set roll state
+    if (isRolling) {
+      return null;
+    } else {
+      setIsRolling(true);
+    }
 
     // start game
     if (!isPlaying) {
-      setIsPlaying(true);
-      rollForVillain();
-      setHeroRollCount(1);
-      setResult(undefined);
+      startGame();
     } else {
+      // or increase roll count
       setHeroRollCount(heroRollCount + 1);
     }
 
+    // roll dice for hero
     setHeroRoll(rollDice());
-
-    setTimeout(() => {
-      setIsRolling(false);
-    }, ANIMATION_DURATION + ANIMATION_DELAY * 2);
   }
 
+  // focus button on pageload
+  useEffect(() => focusButton(), []);
+  // re-focus button after roll
   useEffect(() => {
-    focusButton();
-  }, []);
-
-  useEffect(() => {
-    if (!isRolling) {
-      focusButton();
-    }
+    if (!isRolling) focusButton();
   }, [isRolling]);
 
   return (
@@ -74,7 +72,7 @@ export const RollButton = () => {
       ref={buttonRef}
       onClick={handleRoll}
       disabled={isRolling}
-      className="w-full rounded-md bg-foreground text-background py-2 px-8 tracking-wide animated-focus"
+      className="w-full rounded-md bg-foreground text-background py-2 px-8 uppercase tracking-wide animated-focus"
     >
       roll dice
     </button>
