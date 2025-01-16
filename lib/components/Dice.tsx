@@ -62,10 +62,10 @@ export const Dice = () => {
           <Die
             num={nums[i]}
             className={cn("transition-all opacity-100", {
-              "opacity-20": !isPlaying && !result,
-              "stroke-[mediumseagreen]": result === "win",
-              "stroke-[tomato]": result === "lose",
-              "stroke-[gold]": result === "draw",
+              "opacity-80 dark:opacity-20": !isPlaying && !result,
+              "stroke-positive": result === "win",
+              "stroke-negative": result === "lose",
+              "stroke-neutral": result === "draw",
             })}
           />
         </div>

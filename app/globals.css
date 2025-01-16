@@ -9,18 +9,20 @@
   --yellow: gold;
   --green: mediumseagreen;
 
-  --foreground: var(--white);
-  --background: var(--black);
-
-  --positive: var(--green);
-  --neutral: var(--yellow);
-  --negative: var(--red);
+  --foreground: var(--black);
+  --background: var(--white);
+  --positive: color-mix(in srgb, var(--green), var(--foreground) 10%);
+  --neutral: color-mix(in srgb, var(--yellow), var(--foreground) 10%);
+  --negative: color-mix(in srgb, var(--red), var(--foreground) 10%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--black);
     --foreground: var(--white);
+    --background: var(--black);
+    --positive: var(--green);
+    --neutral: var(--yellow);
+    --negative: var(--red);
   }
 }
 
