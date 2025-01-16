@@ -72,7 +72,7 @@ export const RollButton = () => {
       ref={buttonRef}
       onClick={handleRoll}
       disabled={isRolling}
-      className="w-full rounded-md bg-foreground text-background py-2 px-8 uppercase tracking-wide animated-focus"
+      className="w-full rounded-md bg-foreground text-background py-4 px-8 uppercase tracking-wide animated-focus"
     >
       roll dice
     </button>

@@ -1,53 +1,62 @@
 "use client";
 
 import NumberFlow from "@number-flow/react";
+
+import { ANIMATION_DELAY, ROLL_COUNT_MULT_THRESHOLD } from "@/lib/constants";
 import { useMatchStore } from "@/lib/stores/match";
-import { ANIMATION_DELAY } from "@/lib/constants";
+import { cn } from "@/lib/utils/cn";
+import { calculateMultiplier } from "@/lib/utils/elo";
+
+const Dot = ({ delay = 0 }: { delay?: number }) => (
+  <span
+    data-show={false}
+    className="animate-[loading_1s_infinite]"
+    style={{
+      animationDelay: `${delay}ms`,
+      animationTimingFunction: "step-end",
+    }}
+  >
+    .
+  </span>
+);
 
 export const HeroDetails = () => {
   const { isRolling, heroRollCount, heroScore } = useMatchStore();
 
+  const currentMultiplier = calculateMultiplier(heroRollCount);
+
   return (
     <div className="flex flex-col">
-      <span>
-        your rolls: <NumberFlow value={heroRollCount} className="ml-1" />
-      </span>
-      <span>
+      <span className="flex flex-col">
         your score:{" "}
         {isRolling ? (
-          <span>
+          <span className="text-4xl h-14 translate-y-2">
             rolling
-            <span
-              data-show={false}
-              className="animate-[loading_1s_infinite]"
-              style={{ animationTimingFunction: "step-end" }}
-            >
-              .
-            </span>
-            <span
-              data-show={false}
-              className="animate-[loading_1s_infinite]"
-              style={{
-                animationDelay: `${ANIMATION_DELAY / 2}ms`,
-                animationTimingFunction: "step-end",
-              }}
-            >
-              .
-            </span>
-            <span
-              data-show={false}
-              className="animate-[loading_1s_infinite]"
-              style={{
-                animationDelay: `${ANIMATION_DELAY}ms`,
-                animationTimingFunction: "step-end",
-              }}
-            >
-              .
-            </span>
+            <Dot />
+            <Dot delay={ANIMATION_DELAY / 2} />
+            <Dot delay={ANIMATION_DELAY} />
           </span>
         ) : (
-          heroScore !== 0 && <span>{heroScore}</span>
+          <NumberFlow
+            value={heroScore!}
+            className={cn("text-4xl h-14", {
+              "opacity-0": !heroScore,
+            })}
+          />
         )}
+      </span>
+
+      <span
+        className={cn("h-8 opacity-0", { "opacity-100": heroRollCount > 0 })}
+      >
+        rolls: <NumberFlow value={heroRollCount} />
+      </span>
+      <span
+        data-active={heroRollCount > ROLL_COUNT_MULT_THRESHOLD}
+        className="opacity-0 data-[active=true]:opacity-100 -mt-2"
+      >
+        multiplier: <NumberFlow value={currentMultiplier} />
+        <span className="text-[90%] ml-px">&times;</span>
       </span>
     </div>
   );
