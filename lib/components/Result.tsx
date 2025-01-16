@@ -28,7 +28,7 @@ export const Result = () => {
       const { playerNewRating, opponentNewRating } = calculateElo(
         heroRating,
         villainRating,
-        matchResult === "win"
+        matchResult
       );
 
       setHeroRating(playerNewRating);
