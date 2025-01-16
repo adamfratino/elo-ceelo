@@ -22,13 +22,17 @@ export const Result = () => {
 
   useEffect(() => {
     if (gameOver && heroScore && villainScore) {
-      setResult(compareRolls(heroScore, villainScore));
+      const matchResult = compareRolls(heroScore, villainScore);
+      setResult(matchResult);
 
-      setHeroRating(calculateElo(heroRating, villainRating, result === "win"));
-      setVillainRating(
-        calculateElo(villainRating, heroRating, result === "lose")
+      const { playerNewRating, opponentNewRating } = calculateElo(
+        heroRating,
+        villainRating,
+        matchResult === "win"
       );
 
+      setHeroRating(playerNewRating);
+      setVillainRating(opponentNewRating);
       setIsPlaying(false);
     }
   }, [heroScore]);

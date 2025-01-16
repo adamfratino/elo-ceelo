@@ -1,14 +1,25 @@
+import type { MatchState } from "../stores/match";
+
 export function calculateElo(
   playerRating: number,
   opponentRating: number,
-  playerWon: boolean,
+  result: MatchState["result"],
   kFactor: number = 32
-): number {
+): { playerNewRating: number; opponentNewRating: number } {
   const expectedScore =
     1 / (1 + Math.pow(10, (opponentRating - playerRating) / 400));
-  const actualScore = playerWon ? 1 : 0;
 
-  return Math.round(playerRating + kFactor * (actualScore - expectedScore));
+  // Set actualScore based on result
+  const actualScore = result === "win" ? 1 : result === "draw" ? 0.5 : 0;
+
+  const playerRatingChange = Math.round(
+    kFactor * (actualScore - expectedScore)
+  );
+
+  return {
+    playerNewRating: playerRating + playerRatingChange,
+    opponentNewRating: opponentRating - playerRatingChange,
+  };
 }
 
 export function generateOpponentRating(
