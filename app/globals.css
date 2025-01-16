@@ -5,9 +5,16 @@
 :root {
   --white: #fff;
   --black: #000;
+  --red: tomato;
+  --yellow: gold;
+  --green: mediumseagreen;
 
   --foreground: var(--white);
   --background: var(--black);
+
+  --positive: var(--green);
+  --neutral: var(--yellow);
+  --negative: var(--red);
 }
 
 @media (prefers-color-scheme: dark) {
