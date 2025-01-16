@@ -6,7 +6,9 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "next build",
+    "prepare": "husky"
   },
   "dependencies": {
     "@number-flow/react": "^0.5.2",
