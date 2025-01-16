@@ -27,7 +27,7 @@ export const EloRating = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-4 mb-8">
+    <div className="flex flex-col items-center gap-4">
       <h1 className="text-4xl font-bold uppercase">Elo Cee-lo</h1>
 
       <div className="flex justify-center gap-4 w-full items-center">
@@ -42,9 +42,8 @@ export const EloRating = () => {
         >
           <Shuffle
             size={12}
-            stroke="white"
             strokeWidth={3}
-            className="transition-all"
+            className="transition-all stroke-foreground"
           />
         </button>
         <h2 className="font-bold uppercase text-lg">

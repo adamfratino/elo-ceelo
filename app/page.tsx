@@ -10,13 +10,13 @@ export default function Home() {
     <main className="flex flex-col items-center justify-center flex-1">
       <div className="flex flex-col items-center gap-4">
         <EloRating />
+        <Result />
         <Dice />
         <RollButton />
         <div className="flex justify-between w-full">
           <HeroDetails />
           <VillainDetails />
         </div>
-        <Result />
       </div>
     </main>
   );
