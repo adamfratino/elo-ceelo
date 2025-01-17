@@ -11,6 +11,10 @@
 
   --foreground: var(--black);
   --background: var(--white);
+
+  --muted: color-mix(in srgb, var(--background), var(--foreground) 12%);
+  --subtle: color-mix(in srgb, var(--background), var(--foreground) 30%);
+
   --positive: color-mix(in srgb, var(--green), var(--foreground) 10%);
   --neutral: color-mix(in srgb, var(--yellow), var(--foreground) 10%);
   --negative: color-mix(in srgb, var(--red), var(--foreground) 10%);
@@ -20,6 +24,7 @@
   :root {
     --foreground: var(--white);
     --background: var(--black);
+
     --positive: var(--green);
     --neutral: var(--yellow);
     --negative: var(--red);
@@ -76,10 +81,15 @@ button {
 
 .animated-focus {
   outline: 2px solid transparent;
-  transition: all 100ms ease;
+  transition: all 150ms ease;
+
+  &.animated-focus-round:focus {
+    border-radius: 50%;
+    box-shadow: 0 0 0 2pt var(--subtle);
+  }
 }
 
 .animated-focus:focus {
-  outline-color: #aaa;
+  outline-color: var(--subtle);
   outline-offset: 2px;
 }

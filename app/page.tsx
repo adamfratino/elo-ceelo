@@ -4,6 +4,7 @@ import { Dice } from "@/lib/components/Dice";
 import { HeroDetails } from "@/lib/components/HeroDetails";
 import { VillainDetails } from "@/lib/components/VillainDetails";
 import { Result } from "@/lib/components/Result";
+import VaulDrawer from "@/lib/components/Drawer";
 
 export default function Home() {
   return (
@@ -18,6 +19,7 @@ export default function Home() {
           <VillainDetails />
         </div>
       </div>
+      <VaulDrawer />
     </main>
   );
 }

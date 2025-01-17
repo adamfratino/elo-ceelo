@@ -44,7 +44,7 @@ export const Result = () => {
       setVillainRating(opponentNewRating);
       setIsPlaying(false);
     }
-  }, [heroScore]);
+  }, [heroScore, gameOver]);
 
   return (
     <span aria-hidden={!result} className="text-center min-h-6">
