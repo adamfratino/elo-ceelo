@@ -31,7 +31,7 @@ export const EloRating = () => {
       <h1 className="text-4xl font-bold uppercase">Elo Cee-lo</h1>
 
       <div className="flex justify-center gap-4 w-full items-center">
-        <h2 className="font-bold uppercase text-lg">
+        <h2 className="font-bold uppercase text-lg min-w-32 text-right">
           You: <NumberFlow value={heroRating} />
         </h2>
         <button
@@ -46,7 +46,7 @@ export const EloRating = () => {
             className="transition-all stroke-foreground"
           />
         </button>
-        <h2 className="font-bold uppercase text-lg">
+        <h2 className="font-bold uppercase text-lg min-w-32">
           Them: <NumberFlow value={villainRating} />
         </h2>
       </div>

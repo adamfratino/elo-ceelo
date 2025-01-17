@@ -28,17 +28,32 @@ export const Dice = () => {
     setHeroScore,
   } = useMatchStore();
 
+  const [showNum1, setShowNum1] = useState<boolean>(false);
+  const [showNum2, setShowNum2] = useState<boolean>(false);
+  const [showNum3, setShowNum3] = useState<boolean>(false);
   const [num1, setNum1] = useState<number | undefined>(0);
   const [num2, setNum2] = useState<number | undefined>(0);
   const [num3, setNum3] = useState<number | undefined>(0);
   const nums = [num1, num2, num3];
+  const showNums = [showNum1, showNum2, showNum3];
 
   useEffect(() => {
     if (!isPlaying) return;
-    setTimeout(() => setNum1(heroRoll[0]), A1);
-    setTimeout(() => setNum2(heroRoll[1]), A2);
+    setShowNum1(false);
+    setShowNum2(false);
+    setShowNum3(false);
+
+    setTimeout(() => {
+      setNum1(heroRoll[0]);
+      setShowNum1(true);
+    }, A1);
+    setTimeout(() => {
+      setNum2(heroRoll[1]);
+      setShowNum2(true);
+    }, A2);
     setTimeout(() => {
       setNum3(heroRoll[2]);
+      setShowNum3(true);
       setIsRolling(false);
 
       if (heroRoll) {
@@ -50,26 +65,28 @@ export const Dice = () => {
 
   return (
     <div className="flex gap-2">
-      {heroRoll.map((_, i) => (
-        <div
-          key={`${i}_${heroRollCount}`}
-          className={cn({ "animate-bounce": isRolling })}
-          style={{
-            animationDelay: `${ANIMATION_DELAY * i}ms`,
-            animationIterationCount: ANIMATION_ITERATIONS,
-          }}
-        >
-          <Die
-            num={nums[i]}
-            className={cn("transition-all opacity-100", {
-              "opacity-80 dark:opacity-20": !isPlaying && !result,
-              "stroke-positive": result === "win",
-              "stroke-negative": result === "lose",
-              "stroke-neutral": result === "draw",
-            })}
-          />
-        </div>
-      ))}
+      {heroRoll.map((_, i) => {
+        return (
+          <div
+            key={`${i}_${heroRollCount}`}
+            className={cn({ "animate-bounce": isRolling })}
+            style={{
+              animationDelay: `${ANIMATION_DELAY * i}ms`,
+              animationIterationCount: ANIMATION_ITERATIONS,
+            }}
+          >
+            <Die
+              num={showNums[i] ? nums[i] : 0}
+              className={cn("transition-all opacity-100", {
+                "opacity-80 dark:opacity-20": !isPlaying && !result,
+                "stroke-positive": result === "win",
+                "stroke-negative": result === "lose",
+                "stroke-neutral": result === "draw",
+              })}
+            />
+          </div>
+        );
+      })}
     </div>
   );
 };
