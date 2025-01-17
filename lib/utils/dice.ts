@@ -1,3 +1,5 @@
+import { BEST_SCORE, WORST_SCORE } from "../constants";
+
 export type TurnResult = {
   roll: Roll;
   attempts: number;
@@ -31,7 +33,7 @@ export function evaluateRoll(dice: number[]): Roll {
   if (sortedDice[0] === 4 && sortedDice[1] === 5 && sortedDice[2] === 6) {
     return {
       dice,
-      score: 999,
+      score: BEST_SCORE,
     };
   }
 
@@ -39,7 +41,7 @@ export function evaluateRoll(dice: number[]): Roll {
   if (sortedDice[0] === 1 && sortedDice[1] === 2 && sortedDice[2] === 3) {
     return {
       dice,
-      score: -999,
+      score: WORST_SCORE,
     };
   }
 
@@ -82,5 +84,85 @@ export function compareRolls(
 }
 
 export function checkInstantWin(score?: number) {
-  return score === 999 || score === -999;
+  return score === BEST_SCORE || score === WORST_SCORE;
+}
+
+export function countWaysToRollScore(targetScore: number): number {
+  let ways = 0;
+
+  // Try all possible dice combinations
+  for (let d1 = 1; d1 <= 6; d1++) {
+    for (let d2 = 1; d2 <= 6; d2++) {
+      for (let d3 = 1; d3 <= 6; d3++) {
+        const roll = evaluateRoll([d1, d2, d3]);
+        if (roll.score === targetScore) {
+          ways++;
+        }
+      }
+    }
+  }
+
+  return ways;
+}
+
+export function calculateWinProbability(villainScore: number): number {
+  let totalWinningCombinations = 0;
+  let totalValidCombinations = 0;
+
+  // Check all possible dice combinations
+  for (let d1 = 1; d1 <= 6; d1++) {
+    for (let d2 = 1; d2 <= 6; d2++) {
+      for (let d3 = 1; d3 <= 6; d3++) {
+        const roll = evaluateRoll([d1, d2, d3]);
+
+        // Skip invalid rolls (score of 0)
+        if (roll.score === 0) continue;
+
+        totalValidCombinations++;
+
+        if (roll.score > villainScore) {
+          totalWinningCombinations++;
+        }
+      }
+    }
+  }
+
+  return totalValidCombinations > 0
+    ? totalWinningCombinations / totalValidCombinations
+    : 0;
+}
+
+// Helper function to analyze all possible scores and their frequencies
+export function analyzeScoreProbabilities(): Array<{
+  score: number;
+  combinations: number;
+  probability: number;
+}> {
+  const scoreFrequency = new Map<number, number>();
+  let totalValidCombinations = 0;
+
+  // Count all possible combinations
+  for (let d1 = 1; d1 <= 6; d1++) {
+    for (let d2 = 1; d2 <= 6; d2++) {
+      for (let d3 = 1; d3 <= 6; d3++) {
+        const roll = evaluateRoll([d1, d2, d3]);
+        if (roll.score !== 0) {
+          scoreFrequency.set(
+            roll.score,
+            (scoreFrequency.get(roll.score) || 0) + 1
+          );
+          totalValidCombinations++;
+        }
+      }
+    }
+  }
+
+  // Convert to array and calculate probabilities
+  return Array.from(scoreFrequency.entries())
+    .map(([score, combinations]) => ({
+      score,
+      combinations,
+      probability: combinations / totalValidCombinations,
+    }))
+    .sort((a, b) => a.score - b.score);
 }
