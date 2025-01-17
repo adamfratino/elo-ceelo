@@ -35,10 +35,11 @@ export default function VaulDrawer() {
             >
               Elo
             </a>{" "}
-            is a ranking system that measures how a player's skilled relative to
-            their opponents. When you win, you gain points. Beat someone ranked
-            way higher? You&apos;ll gain more points. Lose to someone ranked
-            lower? You&apos;ll lose more points. Simple, but it works.
+            is a ranking system that measures how a player&apos;s skilled
+            relative to their opponents. When you win, you gain points. Beat
+            someone ranked way higher? You&apos;ll gain more points. Lose to
+            someone ranked lower? You&apos;ll lose more points. Simple, but it
+            works.
           </p>
           <p className="balance text-sm mb-6 mr-6 font-light leading-relaxed">
             <a
