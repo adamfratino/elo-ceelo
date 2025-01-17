@@ -1,6 +1,6 @@
 "use client";
 
-import { CircleHelp } from "lucide-react";
+import { CircleHelp, X } from "lucide-react";
 import { Drawer } from "vaul";
 
 import { HELP_ICON_SIZE } from "@/lib/constants";
@@ -8,15 +8,25 @@ import { HELP_ICON_SIZE } from "@/lib/constants";
 export default function VaulDrawer() {
   return (
     <Drawer.Root direction="right">
-      <Drawer.Trigger className="hover:scale-105 active:scale-95 transition-all fixed top-4 right-4 animated-focus animated-focus-round">
+      <Drawer.Trigger className="hover:scale-105 active:scale-95 transition-all fixed top-4 right-4 rounded-full">
         <CircleHelp size={HELP_ICON_SIZE} />
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-[rgba(0,0,0,0.85)]" />
-        <Drawer.Content className="p-12 px-6 bg-muted fixed top-0 bottom-0 right-0 max-w-96 outline-none normal-case font-normal [&_a]:text-positive [&_a]:underline hover:[&_a]:no-underline rounded-l-lg my-4">
-          <Drawer.Title className="text-xl font-bold mb-4">
-            What is all this?
-          </Drawer.Title>
+        <Drawer.Content className="bg-background p-12 px-6 fixed top-0 bottom-0 right-0 max-w-96 outline-none normal-case font-normal [&_a]:text-positive [&_a]:underline hover:[&_a]:no-underline rounded-lg">
+          <div className="flex justify-between align-start mb-4 border-b border-dashed border-subtle pb-4 mr-12">
+            <div>
+              <Drawer.Title className="text-xl font-bold mb">
+                What is all this?
+              </Drawer.Title>
+              <Drawer.Description className="text-xs">
+                <strong>tl;dr:</strong> become the best at RNG
+              </Drawer.Description>
+            </div>
+            <Drawer.Close className="fixed top-4 right-4 animated-focus">
+              <X size={HELP_ICON_SIZE} />
+            </Drawer.Close>
+          </div>
           <p className="balance text-sm mb-6 mr-6 font-light leading-relaxed">
             <a
               href="https://en.wikipedia.org/wiki/Elo_rating_system"
@@ -25,8 +35,8 @@ export default function VaulDrawer() {
             >
               Elo
             </a>{" "}
-            is a ranking system that measures how skilled players are compared
-            to each other. When you win, you gain points. Beat someone ranked
+            is a ranking system that measures how a player's skilled relative to
+            their opponents. When you win, you gain points. Beat someone ranked
             way higher? You&apos;ll gain more points. Lose to someone ranked
             lower? You&apos;ll lose more points. Simple, but it works.
           </p>
