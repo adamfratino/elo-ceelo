@@ -7,11 +7,11 @@ import {
   ANIMATION_DELAY,
   ANIMATION_ITERATIONS,
 } from "@/lib/constants";
-import { cn } from "@/lib/utils/cn";
 import { useMatchStore } from "@/lib/stores/match";
+import { cn } from "@/lib/utils/cn";
+import { evaluateRoll } from "@/lib/utils/dice";
 
 import { Die } from "./Die";
-import { evaluateRoll } from "../utils/dice";
 
 const A1 = ANIMATION_DURATION;
 const A2 = ANIMATION_DURATION + ANIMATION_DELAY;
