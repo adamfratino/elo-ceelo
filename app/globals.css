@@ -62,6 +62,18 @@ body {
   }
 }
 
+a,
+button {
+  outline: 2px solid transparent;
+  transition: all 150ms ease;
+  border-radius: 4px;
+
+  &:focus {
+    outline-color: var(--positive);
+    outline-offset: 2px;
+  }
+}
+
 button {
   transition: all 150ms ease-in-out;
 
@@ -77,19 +89,4 @@ button {
     opacity: 0.2;
     cursor: not-allowed;
   }
-}
-
-.animated-focus {
-  outline: 2px solid transparent;
-  transition: all 150ms ease;
-
-  &.animated-focus-round:focus {
-    border-radius: 50%;
-    box-shadow: 0 0 0 2pt var(--subtle);
-  }
-}
-
-.animated-focus:focus {
-  outline-color: var(--subtle);
-  outline-offset: 2px;
 }
