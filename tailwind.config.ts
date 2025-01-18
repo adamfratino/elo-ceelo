@@ -7,6 +7,9 @@ export default {
   ],
   theme: {
     colors: {
+      black: "var(--black)",
+      white: "var(--white)",
+
       background: "var(--background)",
       foreground: "var(--foreground)",
 

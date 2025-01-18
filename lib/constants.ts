@@ -1,3 +1,5 @@
+export const APP_NAME = "Elo Cee-lo";
+
 export const DIE_SIZE = 120;
 
 export const ANIMATION_DELAY = 250;
@@ -15,3 +17,5 @@ export const WORST_SCORE = -999;
 export const HELP_ICON_SIZE = 24;
 
 export const PAGELOAD_DELAY = (ANIMATION_DELAY / 2000) * 4;
+
+export const INITIAL_SHUFFLES = 3;
