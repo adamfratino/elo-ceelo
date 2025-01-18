@@ -7,7 +7,7 @@ import { useEloStore } from "@/lib/stores/elo";
 
 import { compareRolls, checkInstantWin } from "@/lib/utils/dice";
 import { calculateElo, calculateMultiplier } from "@/lib/utils/elo";
-import { cn } from "../lib/utils/cn";
+import { cn } from "../../lib/utils/cn";
 
 export const Result = () => {
   const { heroRating, setHeroRating, villainRating, setVillainRating } =

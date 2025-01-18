@@ -19,9 +19,6 @@ export const VaulDrawer = () => {
               <Drawer.Title className="text-xl font-bold mb">
                 What is all this?
               </Drawer.Title>
-              <Drawer.Description className="text-xs">
-                <strong>tl;dr:</strong> become the best at RNG
-              </Drawer.Description>
             </div>
             <Drawer.Close className="fixed top-4 right-4 animated-focus">
               <X size={HELP_ICON_SIZE} />
@@ -61,6 +58,9 @@ export const VaulDrawer = () => {
             watching your Elo climb after a hot streak can be satisfying too,
             and everyone loves pressing buttons.
           </p>
+          <Drawer.Description className="text-xs">
+            <strong>tl;dr:</strong> become the best at RNG
+          </Drawer.Description>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
