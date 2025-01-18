@@ -8,6 +8,8 @@ import { useMatchStore } from "@/lib/stores/match";
 import { rollDice, generateVillainTurn } from "@/lib/utils/dice";
 
 export const RollButton = () => {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   const {
     isRolling,
     isPlaying,
@@ -21,8 +23,6 @@ export const RollButton = () => {
     setVillainRoll,
     setResult,
   } = useMatchStore();
-
-  const buttonRef = useRef<HTMLButtonElement>(null);
 
   function focusButton() {
     if (buttonRef.current) {
@@ -62,8 +62,6 @@ export const RollButton = () => {
     setHeroRoll(rollDice());
   }
 
-  // focus button on pageload
-  useEffect(() => focusButton(), []);
   // re-focus button after roll
   useEffect(() => {
     if (!isRolling) focusButton();
@@ -74,13 +72,14 @@ export const RollButton = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: PAGELOAD_DELAY }}
-      className="w-full"
+      data-disabled={isRolling}
+      className="w-full data-[disabled=true]:cursor-not-allowed"
     >
       <button
         ref={buttonRef}
         onClick={handleRoll}
         disabled={isRolling}
-        className="w-full rounded-md bg-foreground text-background py-4 px-8 uppercase tracking-wide animated-focus active:scale-95"
+        className="w-full rounded-md bg-foreground text-background py-4 px-8 uppercase tracking-wide disabled:pointer-events-none"
       >
         roll dice
       </button>
