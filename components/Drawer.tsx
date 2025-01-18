@@ -5,7 +5,7 @@ import { Drawer } from "vaul";
 
 import { HELP_ICON_SIZE } from "@/lib/constants";
 
-export default function VaulDrawer() {
+export const VaulDrawer = () => {
   return (
     <Drawer.Root direction="right">
       <Drawer.Trigger className="hover:scale-105 active:scale-95 transition-all fixed top-4 right-4 rounded-full">
@@ -65,4 +65,4 @@ export default function VaulDrawer() {
       </Drawer.Portal>
     </Drawer.Root>
   );
-}
+};
