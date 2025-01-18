@@ -13,3 +13,5 @@ export const BEST_SCORE = 999;
 export const WORST_SCORE = -999;
 
 export const HELP_ICON_SIZE = 24;
+
+export const PAGELOAD_DELAY = (ANIMATION_DELAY / 2000) * 4;

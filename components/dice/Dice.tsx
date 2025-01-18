@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import { useState, useEffect } from "react";
 
 import {
@@ -28,6 +29,7 @@ export const Dice = () => {
     setHeroScore,
   } = useMatchStore();
 
+  const [pageIsLoaded, setPageIsLoaded] = useState<boolean>(false);
   const [showNum1, setShowNum1] = useState<boolean>(false);
   const [showNum2, setShowNum2] = useState<boolean>(false);
   const [showNum3, setShowNum3] = useState<boolean>(false);
@@ -39,6 +41,7 @@ export const Dice = () => {
 
   useEffect(() => {
     if (!isPlaying) return;
+
     setShowNum1(false);
     setShowNum2(false);
     setShowNum3(false);
@@ -47,10 +50,12 @@ export const Dice = () => {
       setNum1(heroRoll[0]);
       setShowNum1(true);
     }, A1);
+
     setTimeout(() => {
       setNum2(heroRoll[1]);
       setShowNum2(true);
     }, A2);
+
     setTimeout(() => {
       setNum3(heroRoll[2]);
       setShowNum3(true);
@@ -63,11 +68,16 @@ export const Dice = () => {
     }, A3);
   }, [heroRoll]);
 
+  useEffect(() => setPageIsLoaded(true), []);
+
   return (
     <div className="flex gap-2">
       {heroRoll.map((_, i) => {
         return (
-          <div
+          <motion.div
+            initial={!pageIsLoaded ? { opacity: 0, scale: 0.5 } : false}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: (ANIMATION_DELAY / 2000) * i }}
             key={`${i}_${heroRollCount}`}
             className={cn({ "animate-bounce": isRolling })}
             style={{
@@ -84,7 +94,7 @@ export const Dice = () => {
                 "stroke-neutral": result === "draw",
               })}
             />
-          </div>
+          </motion.div>
         );
       })}
     </div>

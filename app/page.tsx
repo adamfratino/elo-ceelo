@@ -5,6 +5,7 @@ import { HeroDetails } from "@/components/results/HeroDetails";
 import { VillainDetails } from "@/components/results/VillainDetails";
 import { Result } from "@/components/results/Result";
 import { VaulDrawer } from "@/components/aside/Drawer";
+import { DetailsContainer } from "@/components/results/DetailsContainer";
 
 export default function Home() {
   return (
@@ -14,10 +15,10 @@ export default function Home() {
         <Result />
         <Dice />
         <RollButton />
-        <div className="flex justify-between w-full">
+        <DetailsContainer>
           <HeroDetails />
           <VillainDetails />
-        </div>
+        </DetailsContainer>
       </div>
       <VaulDrawer />
     </main>
