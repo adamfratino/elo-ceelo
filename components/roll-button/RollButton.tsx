@@ -1,7 +1,9 @@
 "use client";
 
+import { motion } from "motion/react";
 import { useRef, useEffect } from "react";
 
+import { PAGELOAD_DELAY } from "@/lib/constants";
 import { useMatchStore } from "@/lib/stores/match";
 import { rollDice, generateVillainTurn } from "@/lib/utils/dice";
 
@@ -68,13 +70,20 @@ export const RollButton = () => {
   }, [isRolling]);
 
   return (
-    <button
-      ref={buttonRef}
-      onClick={handleRoll}
-      disabled={isRolling}
-      className="w-full rounded-md bg-foreground text-background py-4 px-8 uppercase tracking-wide animated-focus"
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: PAGELOAD_DELAY }}
+      className="w-full"
     >
-      roll dice
-    </button>
+      <button
+        ref={buttonRef}
+        onClick={handleRoll}
+        disabled={isRolling}
+        className="w-full rounded-md bg-foreground text-background py-4 px-8 uppercase tracking-wide animated-focus active:scale-95"
+      >
+        roll dice
+      </button>
+    </motion.div>
   );
 };

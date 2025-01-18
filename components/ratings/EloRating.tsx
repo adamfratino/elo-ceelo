@@ -2,10 +2,14 @@
 
 import NumberFlow from "@number-flow/react";
 import { Shuffle } from "lucide-react";
+import { motion } from "motion/react";
 import { useEffect } from "react";
+
+import { PAGELOAD_DELAY } from "@/lib/constants";
 
 import { useEloStore } from "@/lib/stores/elo";
 import { useMatchStore } from "@/lib/stores/match";
+
 import { generateOpponentRating } from "@/lib/utils/elo";
 
 export const EloRating = () => {
@@ -27,7 +31,12 @@ export const EloRating = () => {
   }, []);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: PAGELOAD_DELAY }}
+      className="flex flex-col items-center gap-4"
+    >
       <h1 className="text-4xl font-bold uppercase">Elo Cee-lo</h1>
 
       <div className="flex justify-center gap-4 w-full items-center">
@@ -50,7 +59,7 @@ export const EloRating = () => {
           Them: <NumberFlow value={villainRating} />
         </h2>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

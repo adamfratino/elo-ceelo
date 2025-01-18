@@ -14,7 +14,7 @@ export const VaulDrawer = () => {
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-[rgba(0,0,0,0.85)]" />
         <Drawer.Content className="bg-background p-12 px-6 fixed top-0 bottom-0 right-0 max-w-96 outline-none normal-case font-normal [&_a]:text-positive [&_a]:underline hover:[&_a]:no-underline rounded-lg">
-          <div className="flex justify-between align-start mb-4 border-b border-dashed border-subtle pb-4 mr-12">
+          <div className="flex justify-between align-start mb-6 border-b border-dashed border-subtle pb-6 mr-12">
             <div>
               <Drawer.Title className="text-xl font-bold mb">
                 What is all this?
@@ -58,8 +58,8 @@ export const VaulDrawer = () => {
             watching your Elo climb after a hot streak can be satisfying too,
             and everyone loves pressing buttons.
           </p>
-          <Drawer.Description className="text-xs">
-            <strong>tl;dr:</strong> become the best at RNG
+          <Drawer.Description className="text-xs border-t border-dashed border-subtle pt-6">
+            <strong>TL;DR:</strong> become the best at RNG
           </Drawer.Description>
         </Drawer.Content>
       </Drawer.Portal>
