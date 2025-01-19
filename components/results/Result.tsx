@@ -14,12 +14,18 @@ export const Result = () => {
     useEloStore();
 
   const {
+    wins,
+    losses,
+    draws,
     result,
     heroScore,
     heroRollCount,
     villainScore,
     setResult,
     setIsPlaying,
+    setWins,
+    setLosses,
+    setDraws,
   } = useMatchStore();
 
   const [gameOver, setGameOver] = useState<boolean>(false);
@@ -43,6 +49,10 @@ export const Result = () => {
       const currentMultiplier = calculateMultiplier(heroRollCount);
 
       setResult(matchResult);
+
+      if (matchResult === "win") setWins(wins + 1);
+      if (matchResult === "lose") setLosses(losses + 1);
+      if (matchResult === "draw") setDraws(draws + 1);
 
       const { playerNewRating, opponentNewRating } = calculateElo(
         heroRating,

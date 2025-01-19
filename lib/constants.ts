@@ -1,4 +1,5 @@
 export const APP_NAME = "Elo Cee-lo";
+export const APP_DESCRIPTION = "Become the best at RNG";
 
 export const DIE_SIZE = 120;
 

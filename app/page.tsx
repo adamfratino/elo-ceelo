@@ -4,7 +4,7 @@ import { Dice } from "@/components/dice/Dice";
 import { HeroDetails } from "@/components/results/HeroDetails";
 import { VillainDetails } from "@/components/results/VillainDetails";
 import { Result } from "@/components/results/Result";
-import { VaulDrawer } from "@/components/aside/Drawer";
+import { AsideDrawer } from "@/components/aside/AsideDrawer";
 import { DetailsContainer } from "@/components/results/DetailsContainer";
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
           <VillainDetails />
         </DetailsContainer>
       </div>
-      <VaulDrawer />
+      <AsideDrawer />
     </main>
   );
 }
