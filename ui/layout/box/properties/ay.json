@@ -1,0 +1,30 @@
+{
+  "base": {
+    "baseline": "items-baseline",
+    "center": "items-center",
+    "end": "items-end",
+    "start": "items-start",
+    "stretch": "items-stretch"
+  },
+  "sm": {
+    "baseline": "sm:items-baseline",
+    "center": "sm:items-center",
+    "end": "sm:items-end",
+    "start": "sm:items-start",
+    "stretch": "sm:items-stretch"
+  },
+  "md": {
+    "baseline": "md:items-baseline",
+    "center": "md:items-center",
+    "end": "md:items-end",
+    "start": "md:items-start",
+    "stretch": "md:items-stretch"
+  },
+  "lg": {
+    "baseline": "lg:items-baseline",
+    "center": "lg:items-center",
+    "end": "lg:items-end",
+    "start": "lg:items-start",
+    "stretch": "lg:items-stretch"
+  }
+}

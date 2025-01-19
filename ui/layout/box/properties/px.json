@@ -1,0 +1,34 @@
+{
+  "base": {
+    "none": "px-0",
+    "xs": "px-1",
+    "sm": "px-2",
+    "md": "px-3",
+    "lg": "px-4",
+    "xl": "px-5"
+  },
+  "sm": {
+    "none": "sm:px-0",
+    "xs": "sm:px-1",
+    "sm": "sm:px-2",
+    "md": "sm:px-3",
+    "lg": "sm:px-4",
+    "xl": "sm:px-5"
+  },
+  "md": {
+    "none": "md:px-0",
+    "xs": "md:px-1",
+    "sm": "md:px-2",
+    "md": "md:px-3",
+    "lg": "md:px-4",
+    "xl": "md:px-5"
+  },
+  "lg": {
+    "none": "lg:px-0",
+    "xs": "lg:px-1",
+    "sm": "lg:px-2",
+    "md": "lg:px-3",
+    "lg": "lg:px-4",
+    "xl": "lg:px-5"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "uiid": "stack",
+  "displayName": "Stack",
+  "category": "layout",
+  "description": "Vertically stack children.",
+  "element": "div",
+  "styles": ["flex", "flex-col"],
+  "variants": {
+    "inline": { "true": "inline-flex" }
+  }
+}

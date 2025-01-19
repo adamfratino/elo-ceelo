@@ -5,61 +5,27 @@ import { Drawer } from "vaul";
 
 import { HELP_ICON_SIZE, APP_DESCRIPTION } from "@/lib/constants";
 
+import { AsideTabs } from "./AsideTabs";
+
 export const AsideDrawer = () => {
   return (
     <Drawer.Root direction="right">
-      <Drawer.Trigger className="hover:scale-105 transition-all fixed bottom-4 sm:top-4 sm:bottom-auto right-4 rounded-full">
+      <Drawer.Trigger className="hover:scale-105 transition-all fixed top-4 right-4 rounded-full">
         <CircleHelp size={HELP_ICON_SIZE} />
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-[rgba(0,0,0,0.85)]" />
-        <Drawer.Content className="bg-background p-12 px-6 fixed top-0 bottom-0 right-0 max-w-96 outline-none normal-case font-normal [&_a]:text-positive [&_a]:underline hover:[&_a]:no-underline rounded-lg overflow-y-auto overflow-x-hidden">
-          <div className="flex justify-between align-start mb-6 border-b border-dashed border-subtle pb-6 mr-12">
-            <div>
-              <Drawer.Title className="text-xl font-bold mb">
-                What is all this?
-              </Drawer.Title>
-            </div>
-            <Drawer.Close className="fixed top-4 right-4 animated-focus">
-              <X size={HELP_ICON_SIZE} />
-            </Drawer.Close>
-          </div>
-          <p className="balance text-sm mb-6 mr-6 font-light leading-relaxed">
-            <a
-              href="https://en.wikipedia.org/wiki/Elo_rating_system"
-              target="_blank"
-              className="font-bold uppercase"
-            >
-              Elo
-            </a>{" "}
-            is a ranking system that adjusts a player&apos;s ranking relative to
-            their opponents. When you win, you gain points. Beat someone ranked
-            way higher? You&apos;ll gain more points. Lose to someone ranked
-            lower? You&apos;ll lose more points. Simple, but it works.
-          </p>
-          <p className="balance text-sm mb-6 mr-6 font-light leading-relaxed">
-            <a
-              href="https://en.wikipedia.org/wiki/Cee-lo"
-              target="_blank"
-              className="font-bold uppercase"
-            >
-              Cee-lo
-            </a>{" "}
-            is a fast-paced dice game played with three dice. Players compete to
-            roll the best combination, from the coveted 4-5-6 to matching pairs
-            and triples. Simple to learn, but with just enough strategy to keep
-            things interesting.
-          </p>
-          <p className="balance text-sm mb-6 mr-6 font-light leading-relaxed">
-            Does Cee-lo need a complex ranking system that was originally
-            designed for chess? Not really - it&apos;s based entirely on luck
-            and you&apos;re usually playing for something more interesting than
-            rating points. But hey, watching your Elo climb after a hot streak
-            can be satisfying too, and everyone loves pressing buttons.
-          </p>
-          <Drawer.Description className="text-xs border-t border-dashed border-subtle pt-6">
+        <Drawer.Content className="bg-background p-12 px-6 fixed top-0 bottom-0 right-0 w-96 outline-none normal-case font-normal [&_a]:text-positive [&_a]:underline hover:[&_a]:no-underline rounded-lg overflow-y-auto overflow-x-hidden">
+          <Drawer.Title className="text-xl font-bold sr-only">
+            What is all this?
+          </Drawer.Title>
+          <Drawer.Description className="text-xs mt-6 sr-only">
             <strong>TL;DR:</strong> {APP_DESCRIPTION}
           </Drawer.Description>
+          <AsideTabs />
+          <Drawer.Close className="fixed top-4 right-4">
+            <X size={HELP_ICON_SIZE} />
+          </Drawer.Close>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>

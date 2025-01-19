@@ -1,0 +1,46 @@
+{
+  "base": {
+    "around": "justify-around",
+    "baseline": "justify-baseline",
+    "between": "justify-between",
+    "center": "justify-center",
+    "end": "justify-end",
+    "evenly": "justify-evenly",
+    "normal": "justify-normal",
+    "start": "justify-start",
+    "stretch": "justify-stretch"
+  },
+  "sm": {
+    "around": "sm:justify-around",
+    "baseline": "sm:justify-baseline",
+    "between": "sm:justify-between",
+    "center": "sm:justify-center",
+    "end": "sm:justify-end",
+    "evenly": "sm:justify-evenly",
+    "normal": "sm:justify-normal",
+    "start": "sm:justify-start",
+    "stretch": "sm:justify-stretch"
+  },
+  "md": {
+    "around": "md:justify-around",
+    "baseline": "md:justify-baseline",
+    "between": "md:justify-between",
+    "center": "md:justify-center",
+    "end": "md:justify-end",
+    "evenly": "md:justify-evenly",
+    "normal": "md:justify-normal",
+    "start": "md:justify-start",
+    "stretch": "md:justify-stretch"
+  },
+  "lg": {
+    "around": "lg:justify-around",
+    "baseline": "lg:justify-baseline",
+    "between": "lg:justify-between",
+    "center": "lg:justify-center",
+    "end": "lg:justify-end",
+    "evenly": "lg:justify-evenly",
+    "normal": "lg:justify-normal",
+    "start": "lg:justify-start",
+    "stretch": "lg:justify-stretch"
+  }
+}

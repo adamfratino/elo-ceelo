@@ -1,0 +1,34 @@
+{
+  "base": {
+    "none": "py-0",
+    "xs": "py-1",
+    "sm": "py-2",
+    "md": "py-3",
+    "lg": "py-4",
+    "xl": "py-5"
+  },
+  "sm": {
+    "none": "sm:py-0",
+    "xs": "sm:py-1",
+    "sm": "sm:py-2",
+    "md": "sm:py-3",
+    "lg": "sm:py-4",
+    "xl": "sm:py-5"
+  },
+  "md": {
+    "none": "md:py-0",
+    "xs": "md:py-1",
+    "sm": "md:py-2",
+    "md": "md:py-3",
+    "lg": "md:py-4",
+    "xl": "md:py-5"
+  },
+  "lg": {
+    "none": "lg:py-0",
+    "xs": "lg:py-1",
+    "sm": "lg:py-2",
+    "md": "lg:py-3",
+    "lg": "lg:py-4",
+    "xl": "lg:py-5"
+  }
+}

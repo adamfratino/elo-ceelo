@@ -1,0 +1,38 @@
+{
+  "base": {
+    "none": "mx-0",
+    "auto": "mx-auto",
+    "xs": "mx-1",
+    "sm": "mx-2",
+    "md": "mx-3",
+    "lg": "mx-4",
+    "xl": "mx-5"
+  },
+  "sm": {
+    "none": "sm:mx-0",
+    "auto": "sm:mx-auto",
+    "xs": "sm:mx-1",
+    "sm": "sm:mx-2",
+    "md": "sm:mx-3",
+    "lg": "sm:mx-4",
+    "xl": "sm:mx-5"
+  },
+  "md": {
+    "none": "md:mx-0",
+    "auto": "md:mx-auto",
+    "xs": "md:mx-1",
+    "sm": "md:mx-2",
+    "md": "md:mx-3",
+    "lg": "md:mx-4",
+    "xl": "md:mx-5"
+  },
+  "lg": {
+    "none": "lg:mx-0",
+    "auto": "lg:mx-auto",
+    "xs": "lg:mx-1",
+    "sm": "lg:mx-2",
+    "md": "lg:mx-3",
+    "lg": "lg:mx-4",
+    "xl": "lg:mx-5"
+  }
+}
