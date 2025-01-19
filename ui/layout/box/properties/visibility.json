@@ -1,0 +1,18 @@
+{
+  "base": {
+    "visible": "visible",
+    "hidden": "invisible"
+  },
+  "sm": {
+    "visible": "sm:visible",
+    "hidden": "sm:invisible"
+  },
+  "md": {
+    "visible": "md:visible",
+    "hidden": "md:invisible"
+  },
+  "lg": {
+    "visible": "lg:visible",
+    "hidden": "lg:invisible"
+  }
+}

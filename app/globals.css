@@ -38,6 +38,14 @@ body {
   color: var(--foreground);
 }
 
+strong {
+  font-weight: 700;
+}
+
+em {
+  font-style: italic;
+}
+
 @keyframes bounce {
   0% {
     transform: translateY(0) rotate(0deg);

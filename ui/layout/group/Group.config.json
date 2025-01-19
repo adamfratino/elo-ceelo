@@ -1,0 +1,13 @@
+{
+  "uiid": "group",
+  "displayName": "Group",
+  "category": "layout",
+  "description": "Horizontally line up children.",
+  "element": "div",
+  "styles": ["flex"],
+  "variants": {
+    "evenly": { "true": "[&>*]:flex-1" },
+    "inline": { "true": "inline-flex" },
+    "wrap": { "true": "flex-wrap" }
+  }
+}

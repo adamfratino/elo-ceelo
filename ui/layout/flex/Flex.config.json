@@ -1,0 +1,8 @@
+{
+  "uiid": "flex",
+  "displayName": "Flex",
+  "category": "layout",
+  "description": "A generic flex container used to set a container's responsive flex direction.",
+  "element": "div",
+  "styles": ["flex"]
+}

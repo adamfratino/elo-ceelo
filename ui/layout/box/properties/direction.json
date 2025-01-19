@@ -1,0 +1,18 @@
+{
+  "base": {
+    "column": "flex-col",
+    "row": "flex-row"
+  },
+  "sm": {
+    "column": "sm:flex-col",
+    "row": "sm:flex-row"
+  },
+  "md": {
+    "column": "md:flex-col",
+    "row": "md:flex-row"
+  },
+  "lg": {
+    "column": "lg:flex-col",
+    "row": "lg:flex-row"
+  }
+}
