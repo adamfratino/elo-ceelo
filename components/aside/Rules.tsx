@@ -26,8 +26,9 @@ export const Rules = () => {
           <h3 className="font-bold text-positive">Single Point</h3>
           <Paragraph>
             Rolling a pair and another number establishes the singleton as a
-            "point". A higher point beats a lower point, so 2-2-6 (establishing
-            a point of 6) is better than 5-5-2 (establishing a point of 2).
+            &quot;point&quot;. A higher point beats a lower point, so 2-2-6
+            (establishing a point of 6) is better than 5-5-2 (establishing a
+            point of 2).
           </Paragraph>
         </li>
         <li>
@@ -53,16 +54,16 @@ export const Rules = () => {
           with a qualifying roll.
         </Paragraph>
         <Paragraph>
-          We've decided to simplify this portion of the game since{" "}
+          We&apos;ve decided to simplify this portion of the game since{" "}
           <strong>(a)</strong> the CPU has an equal chance to instantly win or
-          instantly lose, and <strong>(b)</strong> it's boring to watch the CPU
-          re-roll.
+          instantly lose, and <strong>(b)</strong> it&apos;s boring to watch the
+          CPU re-roll.
         </Paragraph>
         <Paragraph>
-          Roll higher than the CPU's roll and you win! Roll lower and you lose.
-          A draw is a draw. Sometimes you'll win without rolling (when the CPU
-          rolls a 1-2-3), sometimes you'll lose without rolling (when the CPU
-          rolls a 4-5-6).
+          Roll higher than the CPU&apos;s roll and you win! Roll lower and you
+          lose. A draw is a draw. Sometimes you&apos;ll win without rolling
+          (when the CPU rolls a 1-2-3), sometimes you&apos;ll lose without
+          rolling (when the CPU rolls a 4-5-6).
         </Paragraph>
       </Stack>
 
@@ -71,15 +72,15 @@ export const Rules = () => {
           Anything else I should know?
         </Paragraph>
         <Paragraph>
-          You can shuffle the CPU's Elo up to three times per session. When you
-          shuffle the CPU's Elo, your session's record (win, loss, draw) will
-          reset.
+          You can shuffle the CPU&apos;s Elo up to three times per session. When
+          you shuffle the CPU&apos;s Elo, your session&apos;s record (win, loss,
+          draw) will reset.
         </Paragraph>
         <Paragraph>
           A multiplier will be activated after every two indeterminate rolls. So
-          if you roll twice and the game isn't over, the Elo stakes are doubled.
-          After four rolls that don't score, it's quadrupled and so on. The
-          multiplier resets when the game is over.
+          if you roll twice and the game isn&apos;t over, the Elo stakes are
+          doubled. After four rolls that don&apos;t score, it&apos;s quadrupled
+          and so on. The multiplier resets when the game is over.
         </Paragraph>
       </Stack>
     </Stack>

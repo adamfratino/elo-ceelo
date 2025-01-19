@@ -1,5 +1,6 @@
 export * from "./box/Box";
 export * from "./conditional-wrapper/ConditionalWrapper";
+export * from "./switch-wrapper/SwitchWrapper";
 
 export * from "./flex/Flex";
 export * from "./group/Group";
