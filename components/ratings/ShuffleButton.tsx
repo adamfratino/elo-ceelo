@@ -12,7 +12,7 @@ import { cn } from "@/lib/utils/cn";
 import { generateOpponentRating } from "@/lib/utils/elo";
 
 export const ShuffleButton = () => {
-  const isPlaying = useMatchStore((s) => s.isPlaying);
+  const { isPlaying, setWins, setLosses, setDraws } = useMatchStore();
 
   const { heroRating, setVillainRating } = useEloStore();
 
@@ -23,6 +23,9 @@ export const ShuffleButton = () => {
     if (!isPlaying) {
       setVillainRating(newVillainRating);
       setRemaining((r) => r - 1);
+      setWins(0);
+      setLosses(0);
+      setDraws(0);
     }
   }
 
@@ -54,7 +57,7 @@ const ShuffleBadge = ({ remaining }: { remaining: number }) => {
   return (
     <aside
       className={cn(
-        "absolute top-0 right-0 text-xs text-black font-bold rounded-full bg-positive size-4 -translate-y-1/2 translate-x-1/2",
+        "absolute top-0 right-0 text-xs text-black font-bold rounded-full bg-positive size-5 -translate-y-1/2 translate-x-1/2 border-2 border-background",
         {
           "bg-neutral": remaining === 2,
           "bg-negative": remaining === 1,
