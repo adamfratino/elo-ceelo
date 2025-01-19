@@ -1,3 +1,4 @@
+import { SidebarDrawer } from "@/components/sidebar/SidebarDrawer";
 import { RollButton } from "@/components/roll-button/RollButton";
 import { EloRating } from "@/components/ratings/EloRating";
 import { Dice } from "@/components/dice/Dice";
@@ -20,6 +21,7 @@ export default function Home() {
           <VillainDetails />
         </DetailsContainer>
       </div>
+      <SidebarDrawer />
       <AsideDrawer />
     </main>
   );

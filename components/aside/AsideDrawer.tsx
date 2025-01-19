@@ -8,18 +8,16 @@ import { HELP_ICON_SIZE, APP_DESCRIPTION } from "@/lib/constants";
 export const AsideDrawer = () => {
   return (
     <Drawer.Root direction="right">
-      <Drawer.Trigger className="hover:scale-105 transition-all fixed bottom-4 sm:top-4 sm:bottom-auto right-4 rounded-full">
+      <Drawer.Trigger className="hover:scale-105 transition-all fixed top-4 right-4 rounded-full">
         <CircleHelp size={HELP_ICON_SIZE} />
       </Drawer.Trigger>
       <Drawer.Portal>
         <Drawer.Overlay className="fixed inset-0 bg-[rgba(0,0,0,0.85)]" />
         <Drawer.Content className="bg-background p-12 px-6 fixed top-0 bottom-0 right-0 max-w-96 outline-none normal-case font-normal [&_a]:text-positive [&_a]:underline hover:[&_a]:no-underline rounded-lg overflow-y-auto overflow-x-hidden">
           <div className="flex justify-between align-start mb-6 border-b border-dashed border-subtle pb-6 mr-12">
-            <div>
-              <Drawer.Title className="text-xl font-bold mb">
-                What is all this?
-              </Drawer.Title>
-            </div>
+            <Drawer.Title className="text-xl font-bold mb">
+              What is all this?
+            </Drawer.Title>
             <Drawer.Close className="fixed top-4 right-4 animated-focus">
               <X size={HELP_ICON_SIZE} />
             </Drawer.Close>

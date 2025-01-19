@@ -10,6 +10,7 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@base-ui-components/react": "1.0.0-alpha.5",
     "@number-flow/react": "^0.5.2",
     "@vercel/analytics": "^1.4.1",
     "class-variance-authority": "^0.7.1",
