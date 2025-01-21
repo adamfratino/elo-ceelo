@@ -1,8 +1,8 @@
 export * from "./box/Box";
-export * from "./conditional-wrapper/ConditionalWrapper";
-export * from "./switch-wrapper/SwitchWrapper";
 
-export * from "./flex/Flex";
-export * from "./group/Group";
-export * from "./stack/Stack";
-export * from "./layer/Layer";
+export * from "./conditional-wrapper";
+export * from "./flex";
+export * from "./group";
+export * from "./stack";
+export * from "./layer";
+export * from "./switch-wrapper";

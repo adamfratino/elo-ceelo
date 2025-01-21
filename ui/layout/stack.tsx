@@ -1,12 +1,12 @@
 import { cva, cx, type VariantProps } from "@/ui/cva";
 
-import { Box, type BoxProps } from "../box/Box";
-
-import stackConfig from "./Stack.config.json";
+import { Box, type BoxProps } from "./box/Box";
 
 export const stackStyles = cva({
-  base: stackConfig.styles,
-  variants: stackConfig.variants,
+  base: ["flex", "flex-col"],
+  variants: {
+    inline: { true: "inline-flex" },
+  },
   defaultVariants: {},
 });
 
@@ -25,7 +25,6 @@ export const Stack = ({
   ...props
 }: StackProps) => (
   <Box
-    data-uiid={stackConfig.uiid}
     className={cx(stackStyles({ inline, className }))}
     ax={ay}
     ay={ax}
@@ -34,4 +33,4 @@ export const Stack = ({
     {children}
   </Box>
 );
-Stack.displayName = stackConfig.displayName;
+Stack.displayName = "Stack";
