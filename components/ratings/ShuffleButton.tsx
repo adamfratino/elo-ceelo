@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 
 import { useEloStore } from "@/lib/stores/elo";
 import { useMatchStore } from "@/lib/stores/match";
+import { useSessionStore } from "@/lib/stores/session";
 
 import { INITIAL_SHUFFLES } from "@/lib/constants";
 
@@ -12,9 +13,9 @@ import { cn } from "@/lib/utils/cn";
 import { generateOpponentRating } from "@/lib/utils/elo";
 
 export const ShuffleButton = () => {
-  const { isPlaying, setWins, setLosses, setDraws } = useMatchStore();
-
   const { heroRating, setVillainRating } = useEloStore();
+  const { setWins, setLosses, setDraws } = useSessionStore();
+  const isPlaying = useMatchStore((s) => s.isPlaying);
 
   const [remaining, setRemaining] = useState(INITIAL_SHUFFLES);
 

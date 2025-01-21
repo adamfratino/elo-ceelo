@@ -5,12 +5,14 @@ import NumberFlow from "@number-flow/react";
 import { ROLL_COUNT_MULT_THRESHOLD } from "@/lib/constants";
 
 import { useMatchStore } from "@/lib/stores/match";
+import { useSessionStore } from "@/lib/stores/session";
 
 import { cn } from "@/lib/utils/cn";
 import { calculateMultiplier } from "@/lib/utils/elo";
 
 export const MatchDetails = () => {
-  const { heroRollCount, wins, losses, draws } = useMatchStore();
+  const { heroRollCount } = useMatchStore();
+  const { wins, losses, draws } = useSessionStore();
 
   const currentMultiplier = calculateMultiplier(heroRollCount);
 

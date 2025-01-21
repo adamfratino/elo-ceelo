@@ -65,6 +65,7 @@ export const RollButton = () => {
   // re-focus button after roll
   useEffect(() => {
     if (!isRolling) focusButton();
+    console.log("RollButton.tsx: if isRolling changes");
   }, [isRolling]);
 
   return (

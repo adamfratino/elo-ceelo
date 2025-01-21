@@ -2,36 +2,30 @@
 
 import { useState, useEffect } from "react";
 
-import { useMatchStore } from "@/lib/stores/match";
 import { useEloStore } from "@/lib/stores/elo";
+import { useMatchStore } from "@/lib/stores/match";
+import { useSessionStore } from "@/lib/stores/session";
 
+import { cn } from "@/lib/utils/cn";
 import { compareRolls, checkInstantWin } from "@/lib/utils/dice";
 import { calculateElo, calculateMultiplier } from "@/lib/utils/elo";
-import { cn } from "../../lib/utils/cn";
 
 export const Result = () => {
   const { heroRating, setHeroRating, villainRating, setVillainRating } =
     useEloStore();
-
+  const { wins, losses, draws, setWins, setLosses, setDraws } =
+    useSessionStore();
   const {
-    wins,
-    losses,
-    draws,
     result,
     heroScore,
     heroRollCount,
     villainScore,
     setResult,
     setIsPlaying,
-    setWins,
-    setLosses,
-    setDraws,
   } = useMatchStore();
 
   const [gameOver, setGameOver] = useState<boolean>(false);
-  const [eloDifferential, setEloDifferential] = useState<number | undefined>(
-    undefined
-  );
+  const [eloDifferential, setEloDifferential] = useState<number | undefined>();
 
   useEffect(() => {
     const scoresExist = !!heroScore && !!villainScore;
@@ -41,6 +35,8 @@ export const Result = () => {
     if (scoresExist || instantWin) {
       setGameOver(true);
     }
+
+    console.log("Result.tsx: if heroScore or villainScore changes");
   }, [heroScore, villainScore]);
 
   useEffect(() => {
@@ -68,8 +64,9 @@ export const Result = () => {
       setVillainRating(opponentNewRating);
 
       setIsPlaying(false);
+      console.log("Result.tsx: if gameOver changes");
     }
-  }, [heroScore, gameOver]);
+  }, [gameOver]);
 
   return (
     <span aria-hidden={!result} className="text-center min-h-6">
