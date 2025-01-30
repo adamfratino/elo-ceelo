@@ -1,13 +1,14 @@
+import { Stack } from "@uiid/layout";
+
 import { cx } from "@/ui/cva";
-import { Stack } from "@/ui/layout";
 
 export const Rules = () => {
   return (
-    <Stack gap="md">
+    <Stack gap="medium">
       <Paragraph className="font-semibold mb-0">
         There are five types of rolls in the game.
       </Paragraph>
-      <Stack as="ul" gap="sm" className="mb-4">
+      <Stack render={<ul />} gap="small" className="mb-4">
         <li>
           <h3 className="font-bold text-positive">4-5-6</h3>
           <Paragraph>
@@ -47,7 +48,7 @@ export const Rules = () => {
         </li>
       </Stack>
 
-      <Stack gap="sm">
+      <Stack gap="small">
         <Paragraph className="font-semibold mb-0">How do I win?</Paragraph>
         <Paragraph>
           In our version, the CPU will always go first and will always start
@@ -67,7 +68,7 @@ export const Rules = () => {
         </Paragraph>
       </Stack>
 
-      <Stack gap="sm">
+      <Stack gap="small">
         <Paragraph className="font-semibold mb-0">
           Anything else I should know?
         </Paragraph>

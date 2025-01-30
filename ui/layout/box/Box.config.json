@@ -1,8 +1,0 @@
-{
-  "uiid": "box",
-  "displayName": "Box",
-  "category": "layout",
-  "element": "div",
-  "styles": [],
-  "description": "A layout primitive, the foundation of all other layout components."
-}

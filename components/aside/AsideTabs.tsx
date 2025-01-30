@@ -1,6 +1,5 @@
 import { Tabs } from "@base-ui-components/react/tabs";
-
-import { Group, Layer } from "@/ui/layout";
+import { Group, Layer } from "@uiid/layout";
 
 import { Overview } from "./Overview";
 import { Rules } from "./Rules";
@@ -8,13 +7,18 @@ import { Rules } from "./Rules";
 export const AsideTabs = () => {
   return (
     <Tabs.Root defaultValue="overview" className="flex-1">
-      <Group asChild gap="xs" px="xs" w="full" evenly>
-        <Tabs.List className="relative">
-          <Tab value="overview">Overview</Tab>
-          <Tab value="rules">Rules</Tab>
-          <Tab value="account">Settings</Tab>
-          <Tabs.Indicator className="absolute top-1/2 left-0 z-[-1] h-8 w-[var(--active-tab-width)] -translate-y-1/2 translate-x-[var(--active-tab-left)] rounded-sm bg-muted transition-all duration-200 ease-in-out" />
-        </Tabs.List>
+      <Group
+        render={<Tabs.List className="relative" />}
+        gap="small"
+        px="xs"
+        w="full"
+        evenly
+      >
+        <Tab value="overview">Overview</Tab>
+        <Tab value="rules">Rules</Tab>
+        <Tab value="account">Settings</Tab>
+        <Tabs.Indicator className="absolute top-1/2 left-0 z-[-1] h-8 w-[var(--active-tab-width)] -translate-y-1/2 translate-x-[var(--active-tab-left)] rounded-sm bg-muted transition-all duration-200 ease-in-out" />
+        {/* </Tabs.List> */}
       </Group>
       <Layer w="full">
         <TabPanel value="overview">
